@@ -1,7 +1,7 @@
 const { users } = require("../data/db");
 
 function getProfile(req, res) {
-  const user = users.find((u) => u.id === req.body.id);
+  const user = users.find((u) => u.id == req.body.id);
 
   if (!user) {
     return res.status(404).json({ message: "Usuario no encontrado" });
@@ -11,8 +11,8 @@ function getProfile(req, res) {
 }
 
 function updateMe(req, res) {
-  const userId = req.body.userId || req.body.id;
-  const user = users.find((u) => u.id === userId);
+  const userId = req.body.userId || req.param.id;
+  const user = users.find((u) => u.id == userId);
 
   if (!user) {
     return res.status(404).json({ message: "Usuario no encontrado" });
